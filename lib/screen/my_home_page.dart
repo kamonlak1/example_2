@@ -1,32 +1,36 @@
-import 'package:example_1/screen/my_second_page.dart';
 import 'package:flutter/material.dart';
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
+void _incrementCounter() {
+  setState(() {
+    _counter++;
+  });
+}
+void _decrementCounter() {
+  setState(() {
+    if(_counter > 0)
+    _counter--;
+  });
+}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const Drawer(),
-      appBar: AppBar(title: const Text("My Home Page")),
-      body: Center(
-          child: Column(
-        children: [
-          const Text("Hello Wrold Nit 16-05-2024"),
-          ElevatedButton(
-            onPressed: (){
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context)=> const MySecondPage(),
-                ),
-              );
-            }, 
-            child: const Text("ไปยังหน้า 2"),
-            )
-        ],
+      appBar: AppBar(
+        title: const Text("My Home Page"),  
+      
       ),
-      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [Text("นับไปแล้ว $_counter"),ElevatedButton(onPressed: _incrementCounter, child: const Text("เพิ่ม")),ElevatedButton(onPressed: _decrementCounter, child: const Text("ลด"))],)
     );
-    //const Text("Hello World Nit 16-05-2024");
   }
 }
